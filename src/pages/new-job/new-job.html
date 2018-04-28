@@ -1,0 +1,32 @@
+<ion-header>
+
+  <ion-navbar color="primary" text-right>
+    <ion-title>Create To Do</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>Title</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Description</ion-label>
+      <ion-textarea type="text"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Due Date</ion-label>
+      <ion-datetime displayFormat="DD-MMM-YYYY" pickerFormat="DD-MMM-YYYY"></ion-datetime>
+    </ion-item>
+
+  </ion-list>
+
+  <button ion-button block (click)="createNewJob()">Create</button>
+
+</ion-content>

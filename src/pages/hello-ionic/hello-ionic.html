@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-right>To Do List</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-fab right bottom>
+    <button ion-fab mini color="primary" (click)="gotoNewJobPage()"><ion-icon name="md-create"></ion-icon></button>
+  </ion-fab>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label><s>Tugas 1</s></ion-label>
+      <ion-checkbox item-right color="secondary" checked="true"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Tugas 2</ion-label>
+      <ion-checkbox item-right color="secondary"></ion-checkbox>
+    </ion-item>
+
+  
+  </ion-list>
+
+
+</ion-content>
