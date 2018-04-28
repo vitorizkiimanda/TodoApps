@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title text-right>Profile</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content padding>
+  <ion-item>
+    <ion-avatar item-start>
+      <img src="assets/imgs/logo.png">
+    </ion-avatar>
+    <h2>Name Name</h2>
+    <p>Student of IPB</p>
+  </ion-item>
+  <ion-list>
+    <ion-list-header>
+      Statistics
+    </ion-list-header>
+    <ion-item>
+      Tasks Done
+      <ion-note item-end>
+      99
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      Tasks Onprogress
+      <ion-note item-end>
+      99
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      Total Tasks
+      <ion-note item-end>
+      198
+      </ion-note>
+    </ion-item>
+  </ion-list>
+
+  <button ion-button color="danger" block (click)="signOut()">Sign Out</button>
+
+</ion-content>
