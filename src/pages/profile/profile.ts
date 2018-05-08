@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { SigninPage } from '../signin/signin';
+import { EditprofilePage } from '../editprofile/editprofile';
 
 @Component({
   selector: 'page-profile',
@@ -13,6 +14,10 @@ export class ProfilePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
+  }
+
+  editProfile(){
+    this.navCtrl.push(EditprofilePage);
   }
 
   signOut(){

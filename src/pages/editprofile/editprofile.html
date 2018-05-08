@@ -1,0 +1,39 @@
+<ion-header>
+
+<ion-navbar color="primary" text-right>
+  <ion-title>Edit Profile</ion-title>
+</ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>Name</ion-label>
+      <ion-input type="text" [(ngModel)]="name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="text" [(ngModel)]="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Retype Password</ion-label>
+      <ion-input type="password" [(ngModel)]="passwordTest"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <button ion-button block (click)="editProfile()">Edit Profile</button>
+  
+</ion-content>
+    
+  

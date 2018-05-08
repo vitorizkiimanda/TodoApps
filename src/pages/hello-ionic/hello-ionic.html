@@ -15,17 +15,12 @@
 
   <ion-list>
 
-    <ion-item>
-      <ion-label><s>Tugas 1</s></ion-label>
-      <ion-checkbox item-right color="secondary" checked="true"></ion-checkbox>
+    <ion-item (press)="seeDetail()">
+      <ion-label *ngIf="!checked">Tugas 1</ion-label>
+      <ion-label *ngIf="checked"><s>Tugas 1</s></ion-label>
+      <ion-checkbox item-right color="secondary" checked="{{checked}}" (click)="changeChecked()"></ion-checkbox>
     </ion-item>
 
-    <ion-item>
-      <ion-label>Tugas 2</ion-label>
-      <ion-checkbox item-right color="secondary"></ion-checkbox>
-    </ion-item>
-
-  
   </ion-list>
 
 

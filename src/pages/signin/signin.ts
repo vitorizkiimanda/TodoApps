@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, MenuController } from 'ionic-angular';
 import { HelloIonicPage } from '../hello-ionic/hello-ionic';
+import { SignupPage } from '../signup/signup';
 
 
 @Component({
@@ -9,7 +10,14 @@ import { HelloIonicPage } from '../hello-ionic/hello-ionic';
 })
 export class SigninPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  email:any;
+  password:any;
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public menuCtrl: MenuController) {
+    this.menuCtrl.enable(false);
   }
 
   ionViewDidLoad() {
@@ -17,7 +25,11 @@ export class SigninPage {
   }
 
   signIn(){
-    this.navCtrl.setRoot(HelloIonicPage);
+    if(this.email && this.password) this.navCtrl.setRoot(HelloIonicPage);
+  }
+
+  signUp(){
+    this.navCtrl.push(SignupPage);
   }
 
 }

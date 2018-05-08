@@ -13,6 +13,7 @@ import { NewJobPage } from '../pages/new-job/new-job';
 import { ProfilePage } from '../pages/profile/profile';
 import { SigninPage } from '../pages/signin/signin';
 import { SignupPage } from '../pages/signup/signup';
+import { EditprofilePage } from '../pages/editprofile/editprofile';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SignupPage } from '../pages/signup/signup';
     ProfilePage,
     SigninPage,
     SignupPage,
+    EditprofilePage,
     ListPage
   ],
   imports: [
@@ -38,6 +40,7 @@ import { SignupPage } from '../pages/signup/signup';
     ProfilePage,
     SigninPage,
     SignupPage,
+    EditprofilePage,
     ListPage
   ],
   providers: [

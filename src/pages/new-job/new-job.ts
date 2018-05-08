@@ -9,6 +9,10 @@ import { HelloIonicPage } from '../hello-ionic/hello-ionic';
 })
 export class NewJobPage {
 
+  title:any;
+  description:any;
+  dueDate:any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -17,7 +21,8 @@ export class NewJobPage {
   }
 
   createNewJob(){
-    this.navCtrl.setRoot(HelloIonicPage);
+    console.log(this.dueDate)
+    if(this.title && this.description && this.dueDate) this.navCtrl.setRoot(HelloIonicPage);
   }
 
 }
