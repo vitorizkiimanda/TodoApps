@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { SigninPage } from '../signin/signin';
 import { EditprofilePage } from '../editprofile/editprofile';
 
@@ -9,7 +9,10 @@ import { EditprofilePage } from '../editprofile/editprofile';
 })
 export class ProfilePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
@@ -21,7 +24,27 @@ export class ProfilePage {
   }
 
   signOut(){
-    this.navCtrl.setRoot(SigninPage);
+    let confirm = this.alertCtrl.create({
+      title: 'Sign Out?',
+      message: 'any job that have not uploaded to the server will not be saved?',
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Sign Out',
+          handler: () => {
+            console.log('Agree clicked');
+            this.navCtrl.setRoot(SigninPage);
+
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
 }
