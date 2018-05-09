@@ -21,13 +21,18 @@
     </ion-item>
 
     <ion-item>
-      <ion-label floating>Password</ion-label>
+      <ion-label floating>Current Password</ion-label>
       <ion-input type="password" [(ngModel)]="password"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label floating>Retype Password</ion-label>
-      <ion-input type="password" [(ngModel)]="passwordTest"></ion-input>
+      <ion-label floating>New Password</ion-label>
+      <ion-input type="password" [(ngModel)]="newPassword"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Retype New Password</ion-label>
+      <ion-input type="password" [(ngModel)]="newPasswordTest"></ion-input>
     </ion-item>
 
   </ion-list>

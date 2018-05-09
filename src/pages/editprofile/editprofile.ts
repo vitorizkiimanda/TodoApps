@@ -12,6 +12,8 @@ export class EditprofilePage {
   password:any;
   name:any;
   passwordTest:any;
+  newPassword:any;
+  newPasswordTest:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -21,7 +23,11 @@ export class EditprofilePage {
   }
 
   editProfile(){
-    if(this.name && this.email && this.password && (this.password == this.passwordTest)) this.navCtrl.setRoot(ProfilePage);
+    if(this.name && this.email && this.password && this.password && (this.newPassword==this.newPasswordTest)){
+      
+      this.navCtrl.setRoot(ProfilePage);
+      
+    } 
   }
 
 }
