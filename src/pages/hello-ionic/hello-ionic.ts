@@ -3,6 +3,7 @@ import { NavController, AlertController, MenuController, NavParams, LoadingContr
 import { NewJobPage } from '../new-job/new-job';
 import { Data } from '../../provider/data';
 import { Http } from '@angular/http';
+import { EditJobPage } from '../edit-job/edit-job';
 
 @Component({
   selector: 'page-hello-ionic',
@@ -15,6 +16,7 @@ export class HelloIonicPage {
   username : string;
   password : string;
   id_user:any;
+  id_todo:any;
 
   jobs:any;
 
@@ -119,6 +121,7 @@ export class HelloIonicPage {
   }
 
   seeDetail(data){
+    let dataJob = data;
     let date = data.duedate.substring(8,10)+'-'+ data.duedate.substring(5,7) + '-' + data.duedate.substring(0,4);
     let prompt = this.alertCtrl.create({
       title: data.judul,
@@ -127,13 +130,13 @@ export class HelloIonicPage {
         {
           text: 'Delete',
           handler: data => {
-            this.deleteJob();
+            this.deleteJob(dataJob);
           }
         },
         {
           text: 'Edit',
           handler: data => {
-            this.navCtrl.push(NewJobPage);
+            this.navCtrl.push(EditJobPage, dataJob);
           }
         }
       ]
@@ -141,15 +144,45 @@ export class HelloIonicPage {
     prompt.present();
   }
 
-  deleteJob(){
+  deleteJob(data){
+    let dataJob = data;
     let prompt = this.alertCtrl.create({
-      title: 'Delete Tugas 1',
+      title: 'Delete '+data.judul,
       message: "This action can't be undo",
       buttons: [
         {
           text: 'Delete',
           handler: data => {
             console.log('Delete clicked');
+            let loading = this.loadCtrl.create({
+              content: 'memuat..'
+            });
+        
+            loading.present();
+            //apiPost
+            let input = {
+              id_todo : dataJob.id_todo
+            };
+            console.log(input);
+            this.http.post(this.data.BASE_URL+"/todo_delete.php",input).subscribe(data => {
+            let response = data.json();
+            console.log(response); 
+            if(response.status==200){    
+              this.getJob();
+              loading.dismiss();
+            }
+            else {
+              loading.dismiss();
+                let alert = this.alertCtrl.create({
+                  title: 'Failed',
+                  message: 'please try again',      
+                  buttons: ['OK']
+                });
+                alert.present();      
+                loading.dismiss();
+            }    
+            });
+            //apiPost
           }
         },
         {

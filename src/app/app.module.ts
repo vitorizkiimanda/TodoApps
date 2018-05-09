@@ -19,6 +19,7 @@ import { EditprofilePage } from '../pages/editprofile/editprofile';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { Data } from '../provider/data';
+import { EditJobPage } from '../pages/edit-job/edit-job';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { Data } from '../provider/data';
     SigninPage,
     SignupPage,
     EditprofilePage,
+    EditJobPage,
     ListPage
   ],
   imports: [
@@ -48,6 +50,7 @@ import { Data } from '../provider/data';
     SigninPage,
     SignupPage,
     EditprofilePage,
+    EditJobPage,
     ListPage
   ],
   providers: [

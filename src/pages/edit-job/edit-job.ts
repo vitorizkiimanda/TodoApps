@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
-import { HelloIonicPage } from '../hello-ionic/hello-ionic';
 import { Data } from '../../provider/data';
 import { Http } from '@angular/http';
+import { HelloIonicPage } from '../hello-ionic/hello-ionic';
 
 
 @Component({
-  selector: 'page-new-job',
-  templateUrl: 'new-job.html',
+  selector: 'page-edit-job',
+  templateUrl: 'edit-job.html',
 })
-export class NewJobPage {
+export class EditJobPage {
 
   title:any;
   description:any;
@@ -56,30 +56,20 @@ export class NewJobPage {
         judul :this.title,
         deskripsi: this.description, 
         duedate: this.dueDate,
-        id_user: this.id_user
+        id_todo: this.id_todo
       };
       console.log(input);
-      this.http.post(this.data.BASE_URL+"/todo_create.php",input).subscribe(data => {
+      this.http.post(this.data.BASE_URL+"/todo_update.php",input).subscribe(data => {
       let response = data.json();
       console.log(response); 
       if(response.status==200){    
         this.navCtrl.setRoot(HelloIonicPage);      
         loading.dismiss();
       }
-      else if(response.status==409) {
-        loading.dismiss();
-          let alert = this.alertCtrl.create({
-            title: 'Maximum List Reached',
-            message: 'delete old list or replace some',      
-            buttons: ['OK']
-          });
-          alert.present();
-          loading.dismiss();
-      }
       else {
         loading.dismiss();
           let alert = this.alertCtrl.create({
-            title: 'Failed Creating New Job',      
+            title: 'Failed Editing Job',      
             buttons: ['OK']
           });
           alert.present();      
