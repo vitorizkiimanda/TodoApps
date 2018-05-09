@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, MenuController } from 'ionic-angular';
+import { NavController, AlertController, MenuController, NavParams, LoadingController } from 'ionic-angular';
 import { NewJobPage } from '../new-job/new-job';
+import { Data } from '../../provider/data';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'page-hello-ionic',
@@ -8,31 +10,119 @@ import { NewJobPage } from '../new-job/new-job';
 })
 export class HelloIonicPage {
 
-  checked: boolean = true;
+  checked: boolean;
 
   username : string;
   password : string;
+  id_user:any;
+
+  jobs:any;
 
   constructor(
-    public navCtrl: NavController,
+    public navCtrl: NavController, 
+    public menuCtrl: MenuController,
+    private data : Data,
+    public navParams: NavParams,
+    public loadCtrl: LoadingController,
     public alertCtrl: AlertController,
-    public menuCtrl: MenuController) {
+    public http: Http) {
     this.menuCtrl.enable(true);
+  }
+
+  ionViewWillEnter() {
+    this.data.getData().then((data) => {
+      console.log(data);
+      this.id_user = data.id_user;
+      this.getJob();
+    })
+  }
+
+  getJob(){
+    //apiGet
+    this.http.get(this.data.BASE_URL+"/todo_read.php?id_user="+this.id_user).subscribe(data => {
+      let response = data.json();
+      console.log(response);
+      if(response.status==200){
+        this.jobs = response.data;
+        for(let job of this.jobs){
+          if(job.status==0) job.status = false;
+          else job.status = true;
+        }
+      }
+      else alert("No Data");
+    });
+    //apiGet  
   }
 
   gotoNewJobPage(){
     this.navCtrl.push(NewJobPage);
   }
 
-  changeChecked(){
-    if(this.checked) this.checked = false;
-    else this.checked = true;
+  changeChecked(data){
+    let loading = this.loadCtrl.create({
+      content: 'memuat..'
+    });
+
+    loading.present();
+    if(data.status){
+      //apiPost
+      let input = {
+        id_todo : data.id_todo
+      };
+      console.log(input);
+      this.http.post(this.data.BASE_URL+"/todo_uncheck.php",input).subscribe(data => {
+      let response = data.json();
+      console.log(response); 
+      if(response.status==200){    
+        this.getJob();
+        loading.dismiss();
+      }
+      else {
+        loading.dismiss();
+          let alert = this.alertCtrl.create({
+            title: 'Failed',
+            message: 'please try again',      
+            buttons: ['OK']
+          });
+          alert.present();      
+          loading.dismiss();
+      }    
+      });
+      //apiPost  
+    } 
+    else {
+      //apiPost
+      let input = {
+        id_todo : data.id_todo
+      };
+      console.log(input);
+      this.http.post(this.data.BASE_URL+"/todo_check.php",input).subscribe(data => {
+      let response = data.json();
+      console.log(response); 
+      if(response.status==200){    
+        this.getJob();
+        loading.dismiss();
+      }
+      else {
+        loading.dismiss();
+          let alert = this.alertCtrl.create({
+            title: 'Failed',
+            message: 'please try again',      
+            buttons: ['OK']
+          });
+          alert.present();      
+          loading.dismiss();
+      }    
+      });
+      //apiPost  
+    }
   }
 
-  seeDetail(){
+  seeDetail(data){
+    let date = data.duedate.substring(8,10)+'-'+ data.duedate.substring(5,7) + '-' + data.duedate.substring(0,4);
     let prompt = this.alertCtrl.create({
-      title: 'Tugas 1',
-      message: "Deskripsi dari Tugas 1 Deskripsi dari Tugas 1 Deskripsi dari Tugas 1 Deskripsi dari Tugas 1 <br/><br/> Due Date : 19 Jun 2018",
+      title: data.judul,
+      message: data.deskripsi+"<br/><br/> Due Date : "+date,
       buttons: [
         {
           text: 'Delete',

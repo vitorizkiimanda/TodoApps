@@ -12,8 +12,15 @@ export class NewJobPage {
   title:any;
   description:any;
   dueDate:any;
+  id_todo:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+    let temp = this.navParams.data;
+      this.title = temp.judul;
+      this.description = temp.deskripsi;
+      this.dueDate = temp.duedate;
+      this.id_todo = temp.id_todo;
   }
 
   ionViewDidLoad() {

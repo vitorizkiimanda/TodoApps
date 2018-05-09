@@ -9,6 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ProfilePage } from '../pages/profile/profile';
 import { SigninPage } from '../pages/signin/signin';
+import { Data } from '../provider/data';
 
 
 @Component({
@@ -18,13 +19,14 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage = SigninPage;
+  rootPage : any;
   pages: Array<{title: string, component: any}>;
 
   constructor(
     public platform: Platform,
     public menu: MenuController,
     public statusBar: StatusBar,
+    public data: Data,
     public splashScreen: SplashScreen
   ) {
     this.initializeApp();
@@ -43,6 +45,15 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+    //Session
+    this.data.isLogin().then((value)=>{
+      if(value){
+        this.rootPage = HelloIonicPage;
+      } else {
+         this.rootPage = SigninPage;
+      }    
+    });
+    //Session
   }
 
   openPage(page) {

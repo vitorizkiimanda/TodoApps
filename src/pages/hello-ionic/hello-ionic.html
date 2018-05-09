@@ -15,10 +15,10 @@
 
   <ion-list>
 
-    <ion-item (press)="seeDetail()">
-      <ion-label *ngIf="!checked">Tugas 1</ion-label>
-      <ion-label *ngIf="checked"><s>Tugas 1</s></ion-label>
-      <ion-checkbox item-right color="secondary" checked="{{checked}}" (click)="changeChecked()"></ion-checkbox>
+    <ion-item *ngFor="let job of jobs" (press)="seeDetail(job)">
+      <ion-label *ngIf="!checked">{{job.judul}}</ion-label>
+      <ion-label *ngIf="checked"><s>{{job.judul}}</s></ion-label>
+      <ion-checkbox item-right color="secondary" checked="{{job.status}}" (click)="changeChecked(job)"></ion-checkbox>
     </ion-item>
 
   </ion-list>

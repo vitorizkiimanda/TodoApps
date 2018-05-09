@@ -18,6 +18,7 @@ import { EditprofilePage } from '../pages/editprofile/editprofile';
 
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { Data } from '../provider/data';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { IonicStorageModule } from '@ionic/storage';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Data
   ]
 })
 export class AppModule {}
