@@ -13,8 +13,8 @@
     <ion-avatar item-start>
       <img src="assets/imgs/logo.png">
     </ion-avatar>
-    <h2>Name Name</h2>
-    <p>Student of IPB</p>
+    <h2>{{nama_user}}</h2>
+    <p>{{email_user}}</p>
   </ion-item>
   <ion-list>
     <ion-list-header>
@@ -23,19 +23,19 @@
     <ion-item>
       Tasks Done
       <ion-note item-end>
-      99
+      {{done}}
       </ion-note>
     </ion-item>
     <ion-item>
       Tasks Onprogress
       <ion-note item-end>
-      99
+      {{onProgress}}
       </ion-note>
     </ion-item>
     <ion-item>
       Total Tasks
       <ion-note item-end>
-      198
+      {{total}}
       </ion-note>
     </ion-item>
   </ion-list>
